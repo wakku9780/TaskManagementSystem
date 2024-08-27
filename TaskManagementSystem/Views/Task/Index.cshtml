@@ -1,0 +1,33 @@
+﻿@model IEnumerable<TaskManagementSystem.Models.TaskItem>
+
+<h2>Tasks</h2>
+
+<a asp-controller="Task" asp-action="Create" class="btn btn-primary">Create New Task</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.Title</td>
+                <td>@task.Description</td>
+                <td>@task.Status</td>
+                <td>
+                    <a asp-controller="Task" asp-action="Edit" asp-route-id="@task.Id" class="btn btn-warning">Edit</a>
+                    <a asp-controller="Task" asp-action="Details" asp-route-id="@task.Id" class="btn btn-info">Details</a>
+                    <form asp-controller="Task" asp-action="Delete" asp-route-id="@task.Id" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
